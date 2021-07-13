@@ -1,0 +1,6 @@
+nomad.gests_book:
+  title: 'Gest book'
+  description: 'Displays admin page with gest book in structure'
+  route_name: nomad.gests_book
+  parent: system.admin_structure
+  weight: -100

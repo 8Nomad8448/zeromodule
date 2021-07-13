@@ -1,0 +1,52 @@
+<?php
+
+/**
+ * @file
+ * File for hooks implementing.
+ */
+
+/**
+ * Implementing hook for creating twig markup.
+ */
+function nomad_schema() {
+  $schema['nomad'] = [
+    'description' => "Stores all the information of user's and their contact information also images, avatars, comments",
+    'fields' => [
+      'id' => [
+        'description' => 'The primary identifier for the record.',
+        'type' => 'serial',
+        'unsigned' => TRUE,
+        'not null' => TRUE,
+      ],
+      'name' => [
+        'description' => "User name.",
+        'type' => 'varchar',
+        'length' => 64,
+        'not null' => FALSE,
+        'default' => '',
+      ],
+      'email' => [
+        'description' => "User's email address.",
+        'type' => 'varchar',
+        'length' => 64,
+        'not null' => FALSE,
+        'default' => '',
+      ],
+      'image' => [
+        'type' => 'int',
+        'not null' => TRUE,
+        'default' => 0,
+        'description' => "Image thet user added.",
+      ],
+      'created' => [
+        'type' => 'varchar',
+        'length' => 64,
+        'not null' => FALSE,
+        'default' => '',
+        'description' => 'Timestamp when the current comment was added by user.',
+      ],
+    ],
+    'primary key' => ['id'],
+  ];
+  return $schema;
+}

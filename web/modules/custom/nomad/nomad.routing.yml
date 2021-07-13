@@ -1,0 +1,28 @@
+nomad.content:
+  path: '/nomad/gests'
+  defaults:
+    _controller: 'Drupal\nomad\Controller\NomadController::report'
+    _title: 'Hello! You can share here with our opinion.'
+  requirements:
+    _permission: 'access content'
+
+nomad.deleteform:
+  path: '/admin/nomad/delete/{id}'
+  defaults:
+    _form: '\Drupal\nomad\Form\NomadConfirmDel'
+  requirements:
+    _permission: 'administer site configuration'
+
+nomad.updateform:
+  path: '/admin/nomad/update/{id}'
+  defaults:
+    _form: '\Drupal\nomad\Form\Nomadformupdate'
+  requirements:
+    _permission: 'administer site configuration'
+
+nomad.gests_book:
+  path: '/admin/structure/gest_book'
+  defaults:
+    _controller: 'Drupal\nomad\Controller\NomadadminController::report'
+  requirements:
+    _permission: 'administer site configuration'
