@@ -33,8 +33,6 @@ function nomad_theme($existing, $type, $theme, $path) {
       'variables' => [
         'markup' => '',
       ],
-//      'path' => $path . '/templates',
-//      'path' => 'modules/custom/nomad/templates/',
     ],
   ];
 }

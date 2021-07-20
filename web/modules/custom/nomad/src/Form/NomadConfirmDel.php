@@ -31,35 +31,38 @@ class NomadConfirmDel extends ConfirmFormBase {
    * Submit delete function, to confirm delete of the selected row.
    */
   public function submitForm(array &$form, FormStateInterface $form_state) {
-    // Creatin database connection and select all the images from database
-    // in order to create check(count) how many rows using image with same file
-    // id.
+    // Creating database connection and select all the images and avatars
+    // from database for check and delete.
     $db = \Drupal::service('database');
     $select = $db->select('nomad', 'r');
     $select->condition('id', $this->id);
-    $select->fields('r', ['image']);
+    $select->fields('r', ['image', 'avatar']);
     $file = $select->execute()->fetchAll();
     $img = json_decode(json_encode($file), TRUE);
-    if (isset($img[0]['image'])) {
+    // Create check to figure out if the avatar or image where set by user,
+    // in order to delete managed file and all dependencies when deleting row,
+    // with idea to prevent database store unused trash images.
+    if (isset($img[0]['avatar']) && !($img[0]['avatar'] == '0')) {
+      $select->condition('image', $img[0]['avatar']);
+      $filemanaged = File::load($img[0]['avatar']);
+      $filemanaged->delete();
+    }
+    if (isset($img[0]['image']) && !($img[0]['image'] == '0')) {
       $select->condition('image', $img[0]['image']);
       $filemanaged = File::load($img[0]['image']);
-      $select = $db->select('nomad', 'r');
-      $select->condition('image', $img[0]['image']);
-      $select->fields('r', ['image']);
-      $check = $select->execute()->fetchAll();
-      $check = count($check);
-      // If current fid used in table more than once than deleting only row but
-      // not managed file and it's dependencies.
-      if ($check == 1) {
-        $filemanaged->delete();
-      }
+      $filemanaged->delete();
       $query = \Drupal::database()->delete('nomad');
       $query->condition('id', $this->id);
       $query->execute();
       \Drupal::messenger()->addMessage($this->t("Selected gest has been removed successfully."), 'status', TRUE);
     }
+    // If both image and avatar is not set by user,
+    // delete only row from database.
     else {
-      \Drupal::messenger()->addMessage($this->t("Selected gest has been removed already."), 'status', TRUE);
+      $query = \Drupal::database()->delete('nomad');
+      $query->condition('id', $this->id);
+      $query->execute();
+      \Drupal::messenger()->addMessage($this->t("Selected gest has been removed successfully."), 'status', TRUE);
     }
   }
 

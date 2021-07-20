@@ -2,7 +2,7 @@ nomad.content:
   path: '/nomad/gests'
   defaults:
     _controller: 'Drupal\nomad\Controller\NomadController::report'
-    _title: 'Hello! You can share here with our opinion.'
+    _title: 'Hello! You can share here with us your opinion.'
   requirements:
     _permission: 'access content'
 

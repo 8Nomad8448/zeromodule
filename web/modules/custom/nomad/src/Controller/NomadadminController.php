@@ -26,7 +26,7 @@ class NomadadminController extends ControllerBase {
   }
 
   /**
-   * Getting before created form, from Nomadform.php.
+   * Getting before created form, from NomadStructureGeests.php.
    */
   public function myform() {
     $nomadform = $this->formbuild->getForm('Drupal\nomad\Form\NomadStructureGests');
@@ -34,7 +34,7 @@ class NomadadminController extends ControllerBase {
   }
 
   /**
-   * Created function for load info from database.
+   * Created function for render info from database to admin panel.
    */
   public function report() {
 
@@ -43,7 +43,7 @@ class NomadadminController extends ControllerBase {
     return [
       '#theme' => 'nomad_admin_gest_list',
       '#form' => $content['form'],
-      '#title' => $this->t("Hello! You can add here a photo of your cat."),
+      '#title' => $this->t("Hello! This is your gest book"),
       '#markup' => $this->t('Below is a list af all pets that taking part in competition of domestic cats'),
     ];
   }
