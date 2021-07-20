@@ -1,0 +1,38 @@
+<?php
+
+/**
+ * @file
+ * File for hooks implementing.
+ */
+
+/**
+ * Implementing hook for creating twig markup.
+ */
+function nomad_theme($existing, $type, $theme, $path) {
+  return [
+    'nomad_twig' => [
+      'type' => 'module',
+      'variables' => [
+        'items' => [],
+        'title' => '',
+        'markup' => '',
+        'form' => [],
+        'root' => [],
+      ],
+    ],
+    'nomad_admin_gest_list' => [
+      'type' => 'module',
+      'variables' => [
+        'title' => '',
+        'markup' => '',
+        'form' => [],
+      ],
+    ],
+    'nomad_admin_modal' => [
+      'type' => 'module',
+      'variables' => [
+        'markup' => '',
+      ],
+    ],
+  ];
+}

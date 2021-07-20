@@ -1,0 +1,8 @@
+name: nomad
+type: module
+description: 'This module creates a page type like gest-book, with a list of gests and a form where users can leave images, add avatars and leave comments.'
+package: nomad
+version: 1.0
+core_version_requirement: '^8.8 || ^9'
+configure: nomad.amdin_settings
+

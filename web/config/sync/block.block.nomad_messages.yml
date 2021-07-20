@@ -1,0 +1,22 @@
+uuid: e5beb972-9713-4dc2-b6d0-cf2ad447c3a0
+langcode: en
+status: true
+dependencies:
+  module:
+    - system
+  theme:
+    - nomad
+_core:
+  default_config_hash: KHQIJ7Vfl25lTjzIc7qIvnuistt-Mw2O0kG4jCofmkI
+id: nomad_messages
+theme: nomad
+region: highlighted
+weight: 0
+provider: null
+plugin: system_messages_block
+settings:
+  id: system_messages_block
+  label: 'Status messages'
+  provider: system
+  label_display: '0'
+visibility: {  }
