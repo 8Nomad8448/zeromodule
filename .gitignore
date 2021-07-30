@@ -21,4 +21,4 @@
 /.env
 
 # Ignore node modules
-/web/themes/custom/nomad/node_modules
+/web/themes/custom/nomadtheme/node_modules
